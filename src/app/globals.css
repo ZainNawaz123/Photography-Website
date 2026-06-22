@@ -9,6 +9,7 @@
   --border: #2a2520;
   --ease-elegant: cubic-bezier(0.22, 1, 0.36, 1);
   --hero-fade-duration: 950ms;
+  --hero-scroll-fade: 450ms;
   --page-enter: 950ms;
   --page-exit: 560ms;
   --page-ease: linear;
@@ -74,6 +75,11 @@ body {
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
   animation: ken-burns 36s linear infinite alternate;
+}
+
+.hero-ken-burns-paused {
+  animation-play-state: paused;
+  will-change: auto;
 }
 
 .animate-ken-burns {

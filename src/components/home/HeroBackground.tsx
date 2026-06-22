@@ -1,24 +1,57 @@
 "use client";
 
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 import { HERO_IMAGE_SRC } from "@/lib/constants/images";
 import { cn } from "@/lib/utils/cn";
 
 export function HeroBackground() {
   const pathname = usePathname();
   const isHome = pathname === "/";
+  const [heroInView, setHeroInView] = useState(isHome);
+
+  useEffect(() => {
+    if (!isHome) {
+      setHeroInView(false);
+      return;
+    }
+
+    const heroEl = document.querySelector(".hero-page");
+    if (!heroEl) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setHeroInView(entry.intersectionRatio > 0.2);
+      },
+      { threshold: [0, 0.2, 0.4, 0.6, 0.8, 1] },
+    );
+
+    observer.observe(heroEl);
+    return () => observer.disconnect();
+  }, [isHome, pathname]);
+
+  const showHero = isHome && heroInView;
 
   return (
     <div
-      aria-hidden={!isHome}
+      aria-hidden={!showHero}
       className={cn(
-        "pointer-events-none fixed inset-0 z-0 opacity-0 transition-opacity ease-linear",
-        isHome && "opacity-100",
+        "pointer-events-none fixed inset-0 z-0 transition-opacity ease-linear",
+        showHero ? "opacity-100" : "opacity-0",
       )}
-      style={{ transitionDuration: "var(--hero-fade-duration)" }}
+      style={{
+        transitionDuration: isHome
+          ? "var(--hero-scroll-fade, 450ms)"
+          : "var(--hero-fade-duration)",
+      }}
     >
       <div className="absolute inset-0 isolate overflow-hidden">
-        <div className="hero-ken-burns absolute inset-[0_-2%]">
+        <div
+          className={cn(
+            "hero-ken-burns absolute inset-[0_-2%]",
+            !showHero && "hero-ken-burns-paused",
+          )}
+        >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={HERO_IMAGE_SRC}
