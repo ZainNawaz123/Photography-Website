@@ -201,6 +201,21 @@ body {
   line-height: 1.75;
 }
 
+.guestbook-select {
+  cursor: pointer;
+  color: #f4f0e8;
+}
+
+.guestbook-select:invalid,
+.guestbook-select option[value=""] {
+  color: rgb(244 240 232 / 0.3);
+}
+
+.guestbook-select option {
+  background: #0c0a09;
+  color: #f4f0e8;
+}
+
 @media (max-width: 767px) {
   .guestbook-field {
     font-size: 16px;
