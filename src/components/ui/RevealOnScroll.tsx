@@ -16,15 +16,6 @@ export function RevealOnScroll({ children, className }: RevealOnScrollProps) {
     const element = ref.current;
     if (!element) return;
 
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-
-    if (prefersReducedMotion) {
-      setVisible(true);
-      return;
-    }
-
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -43,7 +34,7 @@ export function RevealOnScroll({ children, className }: RevealOnScrollProps) {
     <div
       ref={ref}
       className={cn(
-        "transition-opacity duration-[1200ms] ease-linear",
+        "reveal-on-scroll transition-opacity duration-[1200ms] ease-linear",
         visible ? "opacity-100" : "opacity-0",
         className,
       )}

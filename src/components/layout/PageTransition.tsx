@@ -14,9 +14,15 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
 export function SiteChrome({ children }: { children: React.ReactNode }) {
   return (
     <>
+      <a href="#main-content" className="skip-link">
+        Skip to content
+      </a>
       <HeroBackground />
       <Header />
-      <div className="relative z-10 flex min-h-full flex-1 flex-col bg-background [&:has(.hero-page)]:bg-transparent">
+      <div
+        id="main-content"
+        className="relative z-10 flex min-h-full flex-1 flex-col bg-background [&:has(.hero-page)]:bg-transparent"
+      >
         <PageTransition>{children}</PageTransition>
         <Footer />
       </div>

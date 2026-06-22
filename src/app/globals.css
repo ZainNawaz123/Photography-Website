@@ -284,12 +284,74 @@ body {
   }
 
   .animate-fade-in,
-  .hero-ken-burns {
+  .hero-ken-burns,
+  .gallery-image,
+  .reveal-on-scroll {
     animation: none;
+    transition: none;
+    opacity: 1;
   }
 
   ::view-transition-old(.page-exit),
   ::view-transition-new(.page-enter) {
     animation: none;
+  }
+}
+
+:focus-visible {
+  outline: 1px solid rgb(244 240 232 / 0.45);
+  outline-offset: 3px;
+}
+
+.hero-cta:focus-visible {
+  outline-color: rgb(244 240 232 / 0.65);
+}
+
+.guestbook-field:focus-visible {
+  outline: none;
+  border-color: rgb(244 240 232 / 0.32);
+  background: rgb(244 240 232 / 0.035);
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: calc(1rem + env(safe-area-inset-top, 0px));
+  z-index: 100;
+  border: 1px solid rgb(244 240 232 / 0.32);
+  background: #0c0a09;
+  padding: 0.75rem 1rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #f4f0e8;
+  transform: translateY(calc(-100% - 1rem));
+  transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
+
+.gallery-image-wrap {
+  line-height: 0;
+}
+
+.gallery-image {
+  transition:
+    transform 900ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 900ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .gallery-image-wrap:hover .gallery-image {
+    transform: scale(1.012);
+    filter: brightness(1.045);
+  }
+}
+
+@media (hover: none) {
+  .gallery-image-wrap:active .gallery-image {
+    filter: brightness(1.03);
   }
 }

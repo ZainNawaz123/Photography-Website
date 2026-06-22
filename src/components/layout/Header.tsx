@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { cn } from "@/lib/utils/cn";
 import { MobileMenu } from "./MobileMenu";
 
@@ -50,12 +50,8 @@ function NavLink({
 export function Header() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [homeScrolled, setHomeScrolled] = useState(false);
   const isHome = pathname === "/";
-
-  useEffect(() => {
-    setMenuOpen(false);
-  }, [pathname]);
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -69,13 +65,10 @@ export function Header() {
   }, [menuOpen]);
 
   useEffect(() => {
-    if (!isHome) {
-      setScrolled(true);
-      return;
-    }
+    if (!isHome) return;
 
     const onScroll = () => {
-      setScrolled(window.scrollY > 40);
+      setHomeScrolled(window.scrollY > 40);
     };
 
     onScroll();
@@ -83,7 +76,11 @@ export function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, [isHome]);
 
-  const isOverHero = isHome && !scrolled;
+  const isOverHero = isHome && !homeScrolled;
+
+  const closeMenu = useCallback(() => {
+    setMenuOpen(false);
+  }, []);
 
   return (
     <>
@@ -153,7 +150,7 @@ export function Header() {
 
       <MobileMenu
         open={menuOpen}
-        onClose={() => setMenuOpen(false)}
+        onClose={closeMenu}
         links={navLinks}
         pathname={pathname}
       />

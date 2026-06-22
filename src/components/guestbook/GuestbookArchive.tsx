@@ -27,11 +27,11 @@ export function GuestbookArchive({ entries }: GuestbookArchiveProps) {
           </p>
         </RevealOnScroll>
       ) : (
-        <ul className="mt-16 space-y-0 md:mt-20">
+        <ul className="mt-16 space-y-0 md:mt-20" aria-label="Approved guestbook entries">
           {entries.map((entry) => (
             <li key={entry.id}>
               <RevealOnScroll>
-                <article className="border-t border-[#f4f0e8]/[0.06] py-10 md:py-14">
+                <article className="border-t border-[#f4f0e8]/[0.05] py-10 md:py-14">
                   <header className="space-y-1.5">
                     <h3 className="font-display text-[1.65rem] tracking-[0.02em] text-[#f4f0e8] sm:text-2xl md:text-[1.65rem]">
                       {entry.name}
@@ -58,7 +58,7 @@ export function GuestbookArchive({ entries }: GuestbookArchiveProps) {
               </RevealOnScroll>
             </li>
           ))}
-          <li aria-hidden className="border-t border-[#f4f0e8]/[0.06]" />
+          <li aria-hidden className="border-t border-[#f4f0e8]/[0.05]" />
         </ul>
       )}
     </div>

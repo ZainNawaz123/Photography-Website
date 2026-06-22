@@ -31,5 +31,10 @@ export function createPageMetadata({
       url: `${siteConfig.url}${path}`,
       type: "website",
     },
+    twitter: {
+      card: "summary_large_image",
+      title: fullTitle,
+      description,
+    },
   };
 }

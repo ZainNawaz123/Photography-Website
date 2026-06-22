@@ -4,7 +4,7 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative isolate mt-auto border-t border-foreground/[0.04] bg-background pb-[env(safe-area-inset-bottom,0px)] [view-transition-name:site-footer]">
+    <footer className="relative isolate mt-auto border-t border-[#f4f0e8]/[0.05] bg-background pb-[env(safe-area-inset-bottom,0px)] [view-transition-name:site-footer]">
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-5 py-10 sm:px-6 md:flex-row md:px-10 md:py-12">
         <p className="text-[0.65rem] tracking-[0.18em] text-foreground/45 uppercase md:text-xs">
           © {year} Zain Nawaz Photography

@@ -8,13 +8,10 @@ import { cn } from "@/lib/utils/cn";
 export function HeroBackground() {
   const pathname = usePathname();
   const isHome = pathname === "/";
-  const [heroInView, setHeroInView] = useState(isHome);
+  const [heroInView, setHeroInView] = useState(true);
 
   useEffect(() => {
-    if (!isHome) {
-      setHeroInView(false);
-      return;
-    }
+    if (!isHome) return;
 
     const heroEl = document.querySelector(".hero-page");
     if (!heroEl) return;
@@ -58,7 +55,7 @@ export function HeroBackground() {
             alt=""
             className="absolute inset-0 h-full w-full object-cover object-[center_58%] max-sm:object-[center_66%] max-md:object-[center_70%]"
             decoding="async"
-            fetchPriority="high"
+            fetchPriority={showHero ? "high" : "low"}
           />
         </div>
 

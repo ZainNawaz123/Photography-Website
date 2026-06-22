@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useLayoutEffect, useRef } from "react";
 import { cn } from "@/lib/utils/cn";
 
 type NavLink = {
@@ -16,6 +17,15 @@ type MobileMenuProps = {
 };
 
 export function MobileMenu({ open, onClose, links, pathname }: MobileMenuProps) {
+  const previousPathname = useRef(pathname);
+
+  useLayoutEffect(() => {
+    if (previousPathname.current === pathname) return;
+
+    previousPathname.current = pathname;
+    onClose();
+  }, [pathname, onClose]);
+
   return (
     <div
       id="mobile-menu"

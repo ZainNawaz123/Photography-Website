@@ -23,13 +23,17 @@ export function GuestbookForm() {
 
   if (state.success) {
     return (
-      <div className="guestbook-form animate-fade-in space-y-4 py-8 text-center">
+      <div
+        className="guestbook-form animate-fade-in space-y-4 py-8 text-center"
+        role="status"
+        aria-live="polite"
+      >
         <p className="font-display text-2xl tracking-[0.03em] text-[#f4f0e8] md:text-3xl">
           Thank you.
         </p>
         <p className="mx-auto max-w-sm text-sm leading-[1.8] text-[#f4f0e8]/65">
           Your mark has been received. It will appear here once it has been
-          read.
+          shared.
         </p>
       </div>
     );

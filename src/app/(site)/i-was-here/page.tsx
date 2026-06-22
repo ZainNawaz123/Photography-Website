@@ -20,7 +20,7 @@ export default async function IWasHerePage() {
           <p className="text-[0.62rem] tracking-[0.34em] text-[#f4f0e8]/45 uppercase">
             I Was Here
           </p>
-          <h1 className="text-balance font-display text-[2.35rem] leading-[0.95] tracking-[0.03em] text-[#f4f0e8] sm:text-4xl md:text-6xl">
+          <h1 className="text-balance font-display text-[2rem] leading-[1.05] tracking-[0.03em] text-[#f4f0e8] sm:text-4xl md:text-[2.75rem] lg:text-6xl lg:leading-[1.08]">
             Leave your mark.
           </h1>
           <p className="mx-auto max-w-[20rem] text-sm leading-[1.85] text-[#f4f0e8]/65 sm:max-w-md md:max-w-lg md:text-[0.95rem] md:leading-[1.9]">
